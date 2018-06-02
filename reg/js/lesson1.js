@@ -2,7 +2,7 @@
 	На входе: строка, длина строки
 */
 function testInputString(str, len) {
-	if ((typeof str === 'string') && !(typeof str === null) && (str != '') && (a.length < len)) {
+	if ((typeof str === 'string') && isNaN(+str) && !(typeof str === null) && (str != '') && (str.length < len)) {
 		return true;	
 	} else {
 		return false;
@@ -30,6 +30,7 @@ do {
 	a = prompt("Название Вашего магазина");
 }
 while (!testInputString(a,50));
+
 var nameShop = a,
 	mainList = {
 		finans: finansLimit,
@@ -75,6 +76,6 @@ do {
 }
 while (i < 5);*/
 
-isNaN(mainList.finans) ? alert('Вы ввели некорректный бюджет') : alert('Ваш бюджет на день составит ' + (mainList.finans/30).toFixed(2) + ' у.е.');
+alert('Ваш бюджет на день составит ' + (mainList.finans/30).toFixed(2) + ' у.е.');
 
 console.log(mainList);
