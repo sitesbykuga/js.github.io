@@ -1,5 +1,7 @@
 var week = ['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'],
-	day = new Date(); //Текущий день
+	//day = new Date(Date.toLocaleDateString(en-US)); //Текущий день
+	day = new Date;
+	console.log(day);
 
 for (let i = 0; i < week.length; i++) {
     // before - тег для вывода ДО дня недели
@@ -12,7 +14,7 @@ for (let i = 0; i < week.length; i++) {
 		after = '</b>' + after;
 	}
 
-	if ((i+1) == day.getDay()) {
+	if (((i+1) == day.getDay()) || ((i == 6) && (day.getDay() == 0))) {
 		before = before + '<i>';
 		after = '</i>' + after;
 	}
