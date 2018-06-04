@@ -66,7 +66,7 @@ function setEmployers(count) {
 			a = prompt("Имя сотрудника");
 		}
 		while (!checkInputString(a,50));
-	obj.array[i] = a
+	obj.array[i] = (i+1) + ' - ' + a;
 	}
 
 	return obj; 
