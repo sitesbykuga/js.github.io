@@ -14,8 +14,9 @@ for (let i=0; i<str.length; i++) {
 str = a;
 console.log(str);
 
-let light = 'легким'; 
-str = str.slice(str.indexOf(light), str.indexOf(light) + light.length - 2) + 'о'; 
+let light = /легким/; 
+str = str.match(light);
+str = str[0].slice(0, -2) + 'о'; 
 document.write('<p>' + str + '</p>');
 
 // --- 2 часть ---
@@ -38,7 +39,7 @@ function checkString( str ) {
 		return false;
 	} else {
 		str = str.trim();
-		str = str.substr(0, 50) + '...';
+		str.length > 50 ? str = str.substr(0, 50) + '...' : str = str;
 		return str;
 	}
 }
