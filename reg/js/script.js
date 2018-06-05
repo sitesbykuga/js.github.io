@@ -134,10 +134,10 @@ var time = 21,
 			if (checkInputString(a,30)) {
 				mainList.shopItems.push(a); 
 			}
-			// Делаем первую букву заглавной
+			// Делаем первую букву заглавной, остальные - строчными
 			for (let i = 0; i<mainList.shopItems.length; i++) {
 				mainList.shopItems[i] = mainList.shopItems[i].trim();
-  				mainList.shopItems[i] = mainList.shopItems[i].charAt(0).toUpperCase() + mainList.shopItems[i].slice(1);
+  				mainList.shopItems[i] = mainList.shopItems[i].charAt(0).toUpperCase() + mainList.shopItems[i].slice(1).toLowerCase();
 			}
 
 			mainList.shopItems.sort();
@@ -178,5 +178,3 @@ mainList.setShopItems();
 mainList.getMainList();
 
 console.log(mainList);
-
-
