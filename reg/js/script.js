@@ -52,7 +52,7 @@ function setPrice() {
 
 // Функция найма сотрудников
 function setEmployers(count) {
-	let array = [];
+	let obj = {};
 	
 	for (i = 0; i < count; i++) {
 		let a = null;
@@ -64,10 +64,10 @@ function setEmployers(count) {
 			a = prompt("Имя сотрудника");
 		}
 		while (!checkInputString(a,50));
-	array[i] = (i+1) + ' - ' + a;
+	obj[i] = (i+1) + ' - ' + a;
 	}
 
-	return array; 
+	return obj; 
 }
 
 var time = 21,

@@ -47,7 +47,7 @@ function checkString( str ) {
 let line = '';
 
 do {
-	line = prompt('Введите строку', '');
+	line = 'dfg';// prompt('Введите строку', '');
 }
 while (!checkString(line));
 
