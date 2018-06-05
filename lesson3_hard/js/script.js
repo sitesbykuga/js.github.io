@@ -1,7 +1,7 @@
 // --- 1 часть ---
 let str = 'урок-3-был слишком легким';
 
-str = str.charAt(0).toUpperCase() + str.slice(1);;
+str = str.charAt(0).toUpperCase() + str.slice(1);
 
 let a = '';
 for (let i=0; i<str.length; i++) {

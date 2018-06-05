@@ -30,7 +30,7 @@ function setNameShop() {
 		if (a !== null){
 			alert('Неверное название магазина! Введите снова');
 		}
-		a = prompt("Название Вашего магазина");
+		a = prompt("Название Вашего магазина",'');
 	}
 	while (!checkInputString(a,50));
 	return a; 
@@ -50,101 +50,133 @@ function setPrice() {
 	return a;
 }
 
-// Функция найма сотрудников
-function setEmployers(count) {
-	let obj = {};
-	
-	for (i = 0; i < count; i++) {
-		let a = null;
-		//Проверка правильности ввода имени сотрудника
-		do {
-			if (a !== null){
-				alert('Неверное имя сотрудника! Введите снова');
-			}
-			a = prompt("Имя сотрудника");
-		}
-		while (!checkInputString(a,50));
-	obj[i] = (i+1) + ' - ' + a;
-	}
-
-	return obj; 
-}
-
 var time = 21,
 	price = setPrice(),
 	mainList = {
 		finans: setFifnans(),
 		shop: setNameShop().toUpperCase(),
 		shopGoods: [],
-		employers: setEmployers(4),
+		employers: {},
 		open: false,
-		discount: true
-	};
+		discount: true,	
+		shopItems: [],
+		translate: {
+			finans: 'Бюджет',
+			shop: 'Название магазина',
+			shopGoods: 'Типы товаров',
+			employers: 'Сотрудники',
+			open: 'Работаем или нет',
+			discount: 'Наличие системы скидок',
+			shopItems: 'Список товаров'
+		}, 
+		setEmployers: function setEmployers(count) {
+		// Функция найма сотрудников
+			for (i = 0; i < count; i++) {
+				let a = null;
+				//Проверка правильности ввода имени сотрудника
+				do {
+					if (a !== null){
+						alert('Неверное имя сотрудника! Введите снова');
+					}
+					a = prompt("Имя сотрудника",'');
+				}
+				while (!checkInputString(a,50));
+				employers[i] = (i+1) + ' - ' + a;
+			}
+		},	
+		setShopGoods: function setShopGoods(count) {
+		//Функция получения от пользователя типов товаров	
+			for(let i = 0; i < count; i++) {
+				let a = prompt("Какой тип товаров будем продавать?",'');
+				if (checkInputString(a,50)) {
+					shopGoods[i] = a;
+				} else {
+					alert('Неверный тип товаров! Введите снова');
+					i--;
+				}   
+			}			
+		}, 
+		getFinansDay: function getFinansDay(fin) {
+		//Функция рассчета дневного бюджета
+			alert('Ваш бюджет на день составит ' + (mainList.finans/30).toFixed(2) + ' у.е.');
+		},
+		checkTime: function checkTime(time, timeBegin, timeEnd) {
+		// Функция проверки рабочего времени
+			mainList.open = false;
+			if ((time >= timeBegin) && (time <= timeEnd)) {
+				console.log('Время работать!');
+				mainList.open = true;
+			} else if ((time < 0) || (time > 24)) {
+				console.log('В сутках 24 часа!');			
+			} else {
+				console.log('Время отдыхать!');
+			}
+		},
+		recountPrice: function recountPrice(value) {
+		// Функция рассчета стоимости товара с учетом скидки 
+		// value - размер скидки в %
+			if (mainList.discount) {
+				price = (price*(100-value)/100).toFixed(2);
+			}
+		},
+		setShopItems: function setShopItems() {
+		//Функция получения от пользователя наименований товаров
+			let a = null;
+			do {
+				if (a !== null){
+					alert('Неверное наименование товаров! Введите снова');
+				}
+				a = prompt("Введите товары через запятую",'');
+			}	
+			while (!checkInputString(a,100));
+			mainList.shopItems = a.split(',');
+			a = prompt("Может быть что-то еще?",'');
+			if (checkInputString(a,30)) {
+				mainList.shopItems.push(a); 
+			}
+			// Делаем первую букву заглавной
+			for (let i = 0; i<mainList.shopItems.length; i++) {
+				mainList.shopItems[i] = mainList.shopItems[i].trim();
+  				mainList.shopItems[i] = mainList.shopItems[i].charAt(0).toUpperCase() + mainList.shopItems[i].slice(1);
+			}
 
-//Функция получения от пользователя типов товаров
-function setShopGoods(count, array) {	
-	for(let i = 0; i < count; i++) {
-		a = prompt("Какой тип товаров будем продавать?");
-		if (checkInputString(a,50)) {
-			array[i] = a;
-		} else {
-			alert('Неверный тип товаров! Введите снова');
-			i--;
-		}   
+			mainList.shopItems.sort();
+
+			// Удаляем из массива пустые элементы
+			let k = 0;
+			for (let i = 0; i<mainList.shopItems.length; i++) {
+				if (mainList.shopItems[i] == '') {
+					k++;
+				}
+			}
+			mainList.shopItems.splice(0, k);
+
+			// Выводим список подуктов на экран
+			let str = '<p> У нас вы можете купить: </p> <ul>';
+			mainList.shopItems.forEach(function(element, key) {
+  				str = str + '<li>'+ (key+1) + ': ' + element + '</li>';
+			});
+			str = str + '</ul>';
+			document.getElementById("shopItems").innerHTML = str;			
+		},
+		getMainList: function getMainList() {
+		// Функция выводит в консоль все свойства и их значения по объекту
+			console.log("Наш магазин включает в себя:");
+			for (let prop in mainList) {
+				if ((typeof(mainList[prop]) !== 'function') && (prop != 'translate')){
+					for (let propTr in mainList.translate) {
+						if (prop == propTr) {
+							console.log(mainList.translate[propTr] + ": " + mainList[prop]);  				
+						}
+					}
+  				}
+			}
+		}
 	}
-}
-setShopGoods(3, mainList.shopGoods);
 
-//Функция рассчета дневного бюджета
-function getFinansDay(fin) {
-	alert('Ваш бюджет на день составит ' + (fin/30).toFixed(2) + ' у.е.');
-}
-getFinansDay(mainList.finans);
-
-// Функция проверки рабочего времени
-function checkTime(time, timeBegin, timeEnd) {
-	if ((time >= timeBegin) && (time <= timeEnd)) {
-		console.log('Время работать!');
-	} else if ((time < 0) || (time > 24)) {
-		console.log('В сутках 24 часа!');
-	} else {
-		console.log('Время отдыхать!');
-	}
-}
-checkTime(time, 8, 22);
-
-function recountPrice(price, discount, value) {
-	if (discount) {
-		price = (price - price*value/100).toFixed(2);
-	}
-	return price;
-}
-price = recountPrice(price, mainList.discount, 20);
-console.log(price);
+mainList.setShopItems();
+mainList.getMainList();
 
 console.log(mainList);
-//Реализация цикла while
-/*let i = 0;
-while (i < 5){
-	a = prompt("Какой тип товаров будем продавать?");	
-	if (testInputString(a,50)){
-		mainList.shopGoods[i] = a;
-		i++;
-	} else {
-		alert('Неверный тип товаров! Введите снова');
-	}
-}*/
 
-//Реализация цикла do ... while
-/*let i = 0;
-do {
-	a = prompt("Какой тип товаров будем продавать?");
-	if (testInputString(a,50)){
-		mainList.shopGoods[i] = a;
-		i++;
-	} else {
-		alert('Неверный тип товаров! Введите снова');
-	}
-}
-while (i < 5);*/
 
