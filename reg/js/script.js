@@ -129,27 +129,23 @@ var time = 21,
 				a = prompt("Введите товары через запятую",'');
 			}	
 			while (!checkInputString(a,100));
-			mainList.shopItems = a.split(',');
+			let array = a.split(',');
 			a = prompt("Может быть что-то еще?",'');
 			if (checkInputString(a,30)) {
-				mainList.shopItems.push(a); 
+				array.push(a); 
 			}
+
 			// Делаем первую букву заглавной, остальные - строчными
-			for (let i = 0; i<mainList.shopItems.length; i++) {
-				mainList.shopItems[i] = mainList.shopItems[i].trim();
-  				mainList.shopItems[i] = mainList.shopItems[i].charAt(0).toUpperCase() + mainList.shopItems[i].slice(1).toLowerCase();
-			}
-
-			mainList.shopItems.sort();
-
-			// Удаляем из массива пустые элементы
-			let k = 0;
-			for (let i = 0; i<mainList.shopItems.length; i++) {
-				if (mainList.shopItems[i] == '') {
-					k++;
+			// Определяем массив mainList.shopItems
+			for (let i = 0; i<array.length; i++) {
+				array[i] = array[i].trim();
+				if (array[i] != '') {					
+  					array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1).toLowerCase();
+  					mainList.shopItems.push(array[i]);
 				}
 			}
-			mainList.shopItems.splice(0, k);
+
+			mainList.shopItems.sort();			
 
 			// Выводим список подуктов на экран
 			let str = '<p> У нас вы можете купить: </p> <ul>';
