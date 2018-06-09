@@ -49,9 +49,30 @@ function setPrice() {
 	while (!(typeof a === 'number') || (typeof a === null) || (isNaN(a)) || (a == ''));
 	return a;
 }
+let btnOpen = document.getElementById('open-btn')[0],
+	nameValue = document.getElementsByClassName('name-value')[0],
+	budgetValue = document.getElementsByClassName('budget-value')[0],
+	goodsValue = document.getElementsByClassName('goods-value')[0],
+	itemsValue = document.getElementsByClassName('items-value')[0],
+	employersValue = document.getElementsByClassName('employers-value')[0],
+	discountValue = document.getElementsByClassName('discount-value')[0],
+	isopenValue = document.getElementsByClassName('isopen-value')[0],
+	goodsItem1 = document.getElementsByClassName('goods-item')[0],
+	goodsItem2 = document.getElementsByClassName('goods-item')[1],
+	goodsItem3 = document.getElementsByClassName('goods-item')[2],
+	goodsItem4 = document.getElementsByClassName('goods-item')[3],
+	btnGoods = document.getElementsByTagName('button')[0],
+	btnDayBudget = document.getElementsByTagName('button')[1],
+	btnEmployers = document.getElementsByTagName('button')[2],
+	chooseItem = document.querySelector('.choose-item'),
+	timeValue = document.querySelector('.time-value'),
+	countBudgetValue = document.querySelector('.count-budget-value'),
+	hireEmployersItem1 = document.querySelectorAll('.hire-employers-item')[0],
+	hireEmployersItem2 = document.querySelectorAll('.hire-employers-item')[1],
+	hireEmployersItem3 = document.querySelectorAll('.hire-employers-item')[2];
 
 var time = 21,
-	price = setPrice(),
+	//price = setPrice(),
 	mainList = {
 		finans: setFifnans(),
 		shop: setNameShop().toUpperCase(),
@@ -172,21 +193,8 @@ var time = 21,
 
 mainList.getMainList();
 
-let btnOpen = document.getElementById('open-btn'),
-	nameValue = document.getElementsByClassName('name-value'),
-	budgetValue = document.getElementsByClassName('budget-value'),
-	goodsValue = document.getElementsByClassName('goods-value'),
-	itemsValue = document.getElementsByClassName('items-value'),
-	employersValue = document.getElementsByClassName('employers-value'),
-	discountValue = document.getElementsByClassName('discount-value'),
-	isopenValue = document.getElementsByClassName('isopen-value'),
-	goodsItem = document.getElementsByClassName('goods-item'),
-	btn = document.getElementsByTagName('button'),
-	chooseItem = document.querySelector('.choose-item'),
-	timeValue = document.querySelector('.time-value'),
-	countBudgetValue = document.querySelector('.count-budget-value'),
-	hireEmployersItem = document.querySelectorAll('.hire-employers-item');
 
 
-budgetValue[0].innerHTML = mainList.finans;
-nameValue[0].textContent = mainList.shop;
+
+budgetValue.innerHTML = mainList.finans;
+nameValue.textContent = mainList.shop;
