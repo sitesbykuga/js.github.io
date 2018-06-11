@@ -216,21 +216,28 @@ btnDayBudget.addEventListener('click', () => {
 	} else {
 		countBudgetValue.value = (mainList.finans/30).toFixed(2);
 	}
-	countBudgetValue.disabled = false;
 });
-
-countBudgetValue.onkeypress = function(e) {
-	return false;
-};
 
 // Обработка ввода имен сотрудников
-hireEmployersItem[0].addEventListener('change', () =>{
+hireEmployersItem[0].addEventListener('input', () =>{
+	let a  = hireEmployersItem[0].value.charAt(hireEmployersItem[0].value.length-1);
+	if (a != a.match(/[а-яА-ЯёЁ]/g)) {
+		hireEmployersItem[0].value = hireEmployersItem[0].value.slice(0,-1);
+	}
 	setDisabledBtnEmployers();
 });
-hireEmployersItem[1].addEventListener('change', () =>{
+hireEmployersItem[1].addEventListener('input', () =>{
+	let a  = hireEmployersItem[1].value.charAt(hireEmployersItem[1].value.length-1);
+	if (a != a.match(/[а-яА-ЯёЁ]/g)) {
+		hireEmployersItem[1].value = hireEmployersItem[1].value.slice(0,-1);
+	}
 	setDisabledBtnEmployers();
 });
-hireEmployersItem[2].addEventListener('change', () =>{
+hireEmployersItem[2].addEventListener('input', () =>{
+	let a  = hireEmployersItem[2].value.charAt(hireEmployersItem[2].value.length-1);
+	if (a != a.match(/[а-яА-ЯёЁ]/g)) {
+		hireEmployersItem[2].value = hireEmployersItem[2].value.slice(0,-1);
+	}
 	setDisabledBtnEmployers();
 });
 
@@ -304,6 +311,7 @@ function clearInput() {
 		}	
 	chooseItem.value = '';
 	timeValue.value = '';
+	countBudgetValue.value = '';
 	
 	for (let i = 0; i < hireEmployersItem.length; i++) {
 			hireEmployersItem[i].value = '';
