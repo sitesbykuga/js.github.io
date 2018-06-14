@@ -18,6 +18,10 @@ input {
   font-size: 14px;
 }
 
+input:focus {
+  outline: none;
+}
+
 .open {
   padding: 20px;
 }

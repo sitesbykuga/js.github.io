@@ -49,6 +49,23 @@ function setPrice() {
 	while (!(typeof a === 'number') || (typeof a === null) || (isNaN(a)) || (a == ''));
 	return a;
 }
+
+function checkRus(str){
+	let a  = str.charAt(str.length-1);
+	if (a != a.match(/[а-яА-ЯёЁ]/g)) {
+		str = str.slice(0,-1);
+	}
+	return str; 
+};
+
+function checkD(str){
+	let a  = str.charAt(str.length-1);
+	if (a != a.match(/\d/g)) {
+		str = str.slice(0,-1);
+	}
+	return str; 
+};
+
 let btnOpen = document.getElementById('open-btn'),
 openSignboard = document.getElementById('open-signboard'),
 nameValue = document.getElementsByClassName('name-value')[0],
@@ -294,49 +311,7 @@ hireEmployersItem[2].addEventListener('change', () =>{
 	employersValue.textContent = str.slice(0, -2);	
 });*/
 
-function setDisabledIfShopClose() {
-	for (let i = 0; i < goodsItem.length; i++) {
-			goodsItem[i].disabled = (mainList.finans == null);
-		}	
-	chooseItem.disabled = (mainList.finans == null);
-	timeValue.disabled = (mainList.finans == null);
-	
-	for (let i = 0; i < hireEmployersItem.length; i++) {
-			hireEmployersItem[i].disabled = (mainList.finans == null);
-	}	
-	countBudgetValue.disabled = true;
-	btnDayBudget.disabled = (mainList.finans == null);
-}
 
-function setDisabledBtnGoods() {
-	let bool = false;
-	for (let i = 0; i < goodsItem.length; i++) {
-		if(goodsItem[i].value != '') {
-			bool = true;
-		}
-	}
-	btnGoods.disabled = !bool;
-	if (!bool) {
-		arr = [];
-		mainList.shopGoods = arr;
-		goodsValue.textContent = '';
-	}
-}
-
-function setDisabledBtnEmployers() {
-	let bool = false;
-	for (let i = 0; i < hireEmployersItem.length; i++) {
-		if(hireEmployersItem[i].value != '') {
-			bool = true;
-		}
-	}
-	btnEmployers.disabled = !bool;
-	if (!bool) {
-		obj = {};
-		mainList.employers = obj;
-		employersValue.textContent = '';
-	}
-}
 
 function clearInput() {
 	for (let i = 0; i < goodsItem.length; i++) {
@@ -387,17 +362,21 @@ function openPage(){
 	saveMain.style.display = 'none';
 	addBtnGoods.style.display = 'none';
 	btnSaveDiv.style.display = 'none';
-	employersValueEdit.style.display = 'none';
-	addBtnEmployers.style.display = 'none';
+	items[0].style.display = 'none';
 	saveBtnEmployers.style.display = 'none';
+
 	nameValue.disabled = true;
 	nameValue.style.color = '#000000';
-	for (let i = 0; i < deleteBtnGoods.length; i++){
-		deleteBtnGoods[i].style.display= 'none';
+
+	for (let i = 0; i < employersName.length; i++){
+		setStyleInputDisabledTrue(employersName[i]);
+		let a = employersName[i].value;
+		if (!checkInputString(a,50))
+		{
+			employersName[i].style.display = 'none';
+		}
 	}
-	for (let i = 0; i < itemsValue.length; i++){
-		itemsValue[i].style.display= 'none';
-	}
+
 	setStyleInputDisabledTrue(budgetValue);
 	setStyleInputDisabledTrue(inputSaleValue);
 	setStyleInputDisabledTrue(btnGoods[0]);
@@ -458,7 +437,8 @@ function getGoods(){
 	}
 }
 
-editBtnGoods.addEventListener('click', () => {
+editBtnGoods.addEventListener('click', () => {	
+	items[0].style.display = 'block';
 	for (let i = 0; i < btnGoods.length; i++){
 		setStyleInputDisabledFalse(btnGoods[i]);		
 	}
@@ -470,8 +450,7 @@ editBtnGoods.addEventListener('click', () => {
 	btnSaveDiv.style.textAlign = 'center';
 	for (let i = 0; i < itemsValue.length; i++){
 		itemsValue[i].style.display= 'block';
-	}
-	
+	}	
 });
 
 addBtnGoods.addEventListener('click', () => {
@@ -506,20 +485,35 @@ saveBtnGoods.addEventListener('click', () => {
 	itemsName = document.getElementsByClassName('items-name');
 	itemsPrice = document.getElementsByClassName('items-price');
 	itemsList = document.getElementsByClassName('items-list');
-	console.log(itemsName.length);
+
+	for (let i = 0; i < itemsName.length; i++){
+		setStyleInputDisabledTrue(itemsName[i]);
+		setStyleInputDisabledTrue(itemsPrice[i]);		
+		let a = itemsName[i].value;
+		if (!checkInputString(a,50))
+		{
+			itemsName[i].style.display = 'none';
+			itemsPrice[i].style.display = 'none';			
+		}
+	}
+
 	shopGoods = [];
+	mainList.shopItems = {};
 	for(let i = 0; i < btnGoods.length; i++) {
 		let a = btnGoods[i].value;
 		if (checkInputString(a,50)) {
 			shopGoods.push(a);
-			for (let j = 0; j < 3; j++){
-				let n = itemsName[i*3 + j + 1].value;
+			for (let j = 0; j < 3; j++){				
+				let n = itemsName[i*3 + j].value;
 				if (checkInputString(n,50)) {
 					mainList.shopItems.itemsShopGoods = a;
 					mainList.shopItems.name = n;
-					mainList.shopItems.price = itemsPrice[i*3 + j + 1].value;
-					setStyleInputDisabledTrue(itemsName[i*3 + j + 1]);	
-					setStyleInputDisabledTrue(itemsPrice[i*3 + j + 1]);				
+					mainList.shopItems.price = itemsPrice[i*3 + j].value;
+					setStyleInputDisabledTrue(itemsName[i*3 + j]);	
+					setStyleInputDisabledTrue(itemsPrice[i*3 + j]);				
+				} else {
+					itemsName[i].style.display = 'none';
+					itemsPrice[i].style.display = 'none';
 				}				 							
 			}			
 		} 
@@ -538,10 +532,40 @@ itemsList[i].remove();
 });
 
 editBtnEmployers.addEventListener('click', () => {
-	employersValue[0].style.display = 'none';
-	employersValueEdit.style.display = 'black';
-
+	for (let i = 0; i < employersName.length; i++){
+		employersName[i].style.display = 'inline-block';
+		setStyleInputDisabledFalse(employersName[i]);
+	}
+	saveBtnEmployers.style.display = 'block';
 });
+
+saveBtnEmployers.addEventListener('click', () => {
+	mainList.employers = {};
+	for (let i = 0; i < employersName.length; i++){
+		setStyleInputDisabledTrue(employersName[i]);
+		let a = employersName[i].value;
+		if (!checkInputString(a,50))
+		{
+			employersName[i].style.display = 'none';
+		} else {
+			a = a.trim();
+			if (a != '') {					
+				a = a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
+				mainList.employers[i] = a;
+			}	
+			setStyleInputDisabledTrue(employersName[i]);
+		}
+	}
+	saveBtnEmployers.style.display = 'none';
+});
+
+
+for (let i = 0; i < employersName.length; i++){
+	employersName[i].addEventListener('input', () => {
+		employersName[i].value = checkRus(employersName[i].value);
+	})
+}
+
 
 
 
