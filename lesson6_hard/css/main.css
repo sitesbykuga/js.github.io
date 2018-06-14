@@ -1,0 +1,275 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to top left, #db4fcf, #fe9e4e) no-repeat;
+  font-family: 'Roboto';
+  font-size: 14px;
+}
+
+input {
+  height: 20px;
+  border-color: #7f009f;
+  border-radius: 8px;
+  width: 150px;
+  text-align: right;
+  padding-right: 10px;
+  font-size: 14px;
+}
+
+.open {
+  padding: 20px;
+}
+
+.open-btn {
+  border: none;
+  outline: none;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  background-color: #7f009f;
+  box-shadow: 0px 0px 10px rgba(83, 86, 173, 0.5);
+  border-radius: 20px;
+  width: 200px;
+  height: 50px;
+}
+
+.open-signboard {
+  text-align: right;
+  padding: 0;
+}
+
+.open-signboard img {
+  height: 30px;
+}
+
+.main {
+  margin: 10px 100px;
+  background-color: rgba(245, 209, 255, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.main .name-value {
+  font-family: 'Merriweather';
+  font-size: 32px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+  height: auto;
+  border: none;
+  background: none;
+}
+
+.main .name-value:focus {
+  outline: none;
+}
+
+.main .budget-title,
+.main .budget-value,
+.main .discount-title,
+.main .discount-value,
+.main .sale-title,
+.main .sale-value,
+.main .goods-title,
+.main .edit-btn,
+.main .items-title,
+.main .employers-title,
+.main .delete-btn-goods,
+.main .btn-goods,
+.main .items-list,
+.main .items-name,
+.main .items-price,
+.main .delete-btn-items,
+.main .add-btn {
+  display: inline-block;
+}
+
+.main .goods-value,
+.main .budget,
+.main .discount,
+.main .sale,
+.main .goods,
+.main .goods-valuer,
+.main .choose-goods,
+.main .items,
+.main .items-goods-name,
+.main .items-value,
+.main .add-btn,
+.main .employers-value,
+.main .employers,
+.main .employers-value-edit {
+  display: block;
+}
+
+.main .items-name {
+  width: 150px;
+}
+
+.main .items-price {
+  width: 50px;
+}
+
+.main .edit-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: rgba(127, 0, 159, 0);
+  margin: 0;
+  padding: 0;
+}
+
+.main .edit-btn img {
+  width: 15px;
+}
+
+.main .btn-goods {
+  margin: 2px;
+  padding: 10px;
+}
+
+.main .delete-btn,
+.main .delete-btn-goods,
+.main .delete-btn-items {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: rgba(127, 0, 159, 0);
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}
+
+.main .delete-btn img,
+.main .delete-btn-goods img,
+.main .delete-btn-items img {
+  width: 20px;
+}
+
+.main .delete-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: rgba(127, 0, 159, 0);
+  margin: 0;
+  padding: 0;
+}
+
+.main .add-btn,
+.main .save-btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #7f009f;
+  margin: 0;
+  padding: 5px 10px;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  margin: 2px 0;
+}
+
+.main .items-goods-name {
+  color: #7f009f;
+}
+
+.main .items-value {
+  background: rgba(255, 255, 255, 0.8);
+  margin: 5px;
+  padding: 10px;
+}
+
+.main .budget-title,
+.main .discount-title,
+.main .sale-title,
+.main .goods-title,
+.main .items-title,
+.main .employers-title,
+.main .time-title {
+  color: #444;
+  font-size: 20px;
+  padding: 10px 0;
+}
+
+.main .budget-value {
+  font-size: 20px;
+  color: #111;
+}
+
+.main .box-2 {
+  width: 60px;
+  height: 12px;
+  background: #444;
+  position: relative;
+  border-radius: 10px;
+}
+
+.main .box-2 input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 999;
+}
+
+.main .box-2 .toogle {
+  position: absolute;
+  z-index: 998;
+  width: 25px;
+  height: 25px;
+  background: #7F009F;
+  top: -6px;
+  box-shadow: 0px 0px 3px #323232 inset;
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  text-align: center;
+  border-radius: 100%;
+  display: table-cell;
+}
+
+.main .box-2 .toogle:before {
+  content: "НЕТ";
+  color: #444;
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 11px;
+  vertical-align: middle;
+}
+
+.main .box-2 input:checked ~ .toogle {
+  margin-left: 35px;
+}
+
+.main .box-2 input:checked + .toogle:before {
+  content: "ДА";
+  color: #fff;
+}
+
+.main .main-setting {
+  border: #7f009f 1px solid;
+  margin: 2px;
+  padding: 10px 0;
+}
+
+.main .items-goods-row,
+.main .employers-row {
+  margin: 15px 2px;
+  border: #7f009f 1px solid;
+  padding: 10px 0;
+}
+
+.main .goods-col {
+  border-right: #7f009f 1px solid;
+}
+
+.main .sale-value {
+  width: 50px;
+}
+
+.main .save-btn-main {
+  text-align: center;
+}

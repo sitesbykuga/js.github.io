@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-grid.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Merriweather|Roboto:400,500" rel="stylesheet">
+	<title>Система управления магазином</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-10 open">
+				<button class="open-btn" id="open-btn">Открыть магазин</button>
+			</div>
+			<div class="col-2" id="open-signboard" class="open-signboard">
+				<!-- <img src="img/close.png" alt="Закрыто" style="height: 80px;"> -->
+			</div>
+		</div>
+	</div>  	
+	<div class="container main">
+		<div class="row">
+			<div class="col-12">  				
+				<div class="container">
+					<div class="row">
+						<div class="col-1"></div>
+						<div class="col-10">
+							<input class="name-value" id="name-value" value="Название">
+						</div>
+						<div class="col-1">
+							<button id="edit-btn-main" class="edit-btn"><img src="img/edit.png" alt="Изменить" title="Изменить">
+							</button>
+						</div>
+					</div>			
+					<div class="row main-setting">
+						<div class="col-6"> 							
+							<div class="budget">
+								<div class="budget-title">Бюджет</div>
+								<input type="text" id="budget-value">
+							</div>
+							<div class="time-title">Время работы магазина</div>
+							<div class="time-value">с 09:30 до 22:00</div>
+							<div class="time-edit">
+								<div class="time-subtitle">Открытие</div>
+								<input type="time" id="time-begin" value="09:30">
+								<div class="time-subtitle">Закрытие</div>
+								<input type="time" id="time-end" value="22:00">
+							</div>
+						</div>
+						<div class="col-6">
+							<div class="discount">
+								<div class="discount-title">Дисконтная система</div>
+								<div class="discount-value">
+									<div class="box-2">
+										<input type="checkbox" id="discount-check"/>
+										<span class="toogle"></span>
+									</div>
+								</div>
+							</div>
+							<div class="sale">
+								<div class="sale-title">Скидка, %</div>
+								<input class="input-sale-value" type="number" value="10" id="input-sale-value">
+							</div>
+						</div>
+						<div class="col-12 save-main">
+							<button class="save-btn" id="save-btn-main">Сохранить</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">  				
+				<div class="container">
+					<div class="row items-goods-row">
+						<div class="col-12 goods-col">
+							<div class="goods">
+								<div class="goods-title">Категории и список товаров</div>								
+								<button id="edit-btn-goods" class="edit-btn"><img src="img/edit.png" alt="Изменить" title="Изменить"></button>
+							</div>
+							<div class="items">
+								<div class="items-list">
+									<div class="goods-valuer">
+										<input type="text" class="btn-goods" value="" placeholder="Категория">
+									</div>								
+									<div class="items-value">Товары<br>
+										<div class="items-value-list">
+											<input class="items-name" value='' placeholder="Наименование">
+											<input class="items-price" value='' placeholder="Цена">
+										</div>
+										<div class="items-value-list">
+											<input class="items-name" value='' placeholder="Наименование">
+											<input class="items-price" value='' placeholder="Цена">
+										</div>
+										<div class="items-value-list">
+											<input class="items-name" value='' placeholder="Наименование">
+											<input class="items-price" value='' placeholder="Цена">
+										</div>
+									</div>
+								</div>
+							</div>
+							<button class="add-btn" id="add-btn-goods">Добавить категорию</button>							
+							<div class="btn-save-div">
+								<button class="save-btn" id="save-btn-goods">Сохранить</button> 
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">  				
+				<div class="container">
+					<div class="row employers-row">
+						<div class="col-12">
+							<div class="employers">
+								<div class="employers-title">Сотрудники: </div>
+								<button id="edit-btn-employers"  class="edit-btn"><img src="img/edit.png" alt="Изменить" title="Изменить"></button>
+							</div>
+							<div class="employers-value">1 - Иванов Иван</div>
+
+							<div class="employers-value-edit">
+								<input class="employers-name" type="text" value="">						
+								<input class="employers-name" type="text" value="">
+								<input class="employers-name" type="text" value="">
+								<button class="add-btn" id="add-btn-employers">Добавить сотрудника</button>	
+								<button class="save-btn" id="save-btn-employers">Сохранить список сотрудников</button>  	
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<link rel="stylesheet" href="css/main.css">
+	<script  src="js/script.js">	</script>
+</body>
+</html>
