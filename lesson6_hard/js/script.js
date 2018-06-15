@@ -376,7 +376,7 @@ saveBtnGoods.addEventListener('click', () => {
 	itemsPrice = document.getElementsByClassName('items-price');
 	itemsList = document.getElementsByClassName('items-list');
 	btnGoods = document.getElementsByClassName('btn-goods');
-	console.log(btnGoods.length);
+
 	shopGoods = [];
 	mainList.shopItems = {};
 	for(let i = 0; i < btnGoods.length; i++) {
