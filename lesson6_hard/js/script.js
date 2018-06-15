@@ -164,20 +164,11 @@ var mainList = {
 };
 
 openPage();
-//setDisabledBtnGoods();
-//setDisabledBtnEmployers();
-//setDisabledIfShopClose();
 
 // Обработка нажатия на кнопку "Открыть магазин"
 btnOpen.addEventListener('click', () => {
 	editMainSetting();
-/*	clearInput();
-
-	mainList.finans = setFifnans();
-	budgetValue.innerHTML = mainList.finans;
-
-	mainList.shop = setNameShop().toUpperCase();
-	nameValue.textContent = mainList.shop;
+	clearInput();
 
 	let obj = {},
 		arr = [];
@@ -185,67 +176,9 @@ btnOpen.addEventListener('click', () => {
 	mainList.employers = obj;
 	mainList.open = false;
 	mainList.shopItems = arr;
+	mainList.sale = null;
 
-	
-
-	// Дискотная система. 
-	// Если бюджет больше 10к, то система работает, иначе - не работает 
-	let color = 'red';	
-	mainList.discount = false;
-	if (mainList.finans >= 10000) {
-		mainList.discount = true;
-		color = 'green';
-	};
-	discountValue.style.backgroundColor = color;
-	
-	setDisabledIfShopClose();*/
 });	
-
-// обработка ввода категорий товаров
-/*goodsItem[0].addEventListener('change', () => {
-		setDisabledBtnGoods();
-});
-goodsItem[1].addEventListener('change', () => {
-		setDisabledBtnGoods();
-});
-goodsItem[2].addEventListener('change', () => {
-		setDisabledBtnGoods();
-});
-goodsItem[3].addEventListener('change', () => {
-		setDisabledBtnGoods();
-});*/
-
-
-// Обработка нажатия на кнопку "Утвердить" категории товаров
-/*btnGoods.addEventListener('click', () => {	
-	shopGoods = [];
-	for(let i = 0; i < goodsItem.length; i++) {
-		let a = goodsItem[i].value;
-		if (checkInputString(a,50)) {
-			shopGoods.push(a);
-		}  
-	};
-	goodsValue.textContent = shopGoods.join(', ');	
-});*/
-
-// Обработка ввода продуктов
-/*chooseItem.addEventListener('change', () => {
-	let a = chooseItem.value;
-	if (checkInputString(a,100)){
-		let array = a.split(',');
-		// Делаем первую букву заглавной, остальные - строчными
-		// Определяем массив mainList.shopItems
-		for (let i = 0; i<array.length; i++) {
-			array[i] = array[i].trim();
-			if (array[i] != '') {					
-				array[i] = array[i].charAt(0).toUpperCase() + array[i].slice(1).toLowerCase();
-				mainList.shopItems.push(array[i]);
-			}
-		}
-		mainList.shopItems.sort();
-		itemsValue.textContent = mainList.shopItems.join(', ');			
-	}	
-});*/
 
 // Обработка ввода времени
 timeValue.addEventListener('change', () => {
@@ -280,55 +213,39 @@ timeValue.addEventListener('change', () => {
 	return false;
 };*/
 
-// Обработка ввода имен сотрудников
-/*hireEmployersItem[0].addEventListener('change', () =>{
-	setDisabledBtnEmployers();
-});
-hireEmployersItem[1].addEventListener('change', () =>{
-	setDisabledBtnEmployers();
-});
-hireEmployersItem[2].addEventListener('change', () =>{
-	setDisabledBtnEmployers();
-});*/
 
-// Обработка нажатии кнопки "Нанять"
-/*btnEmployers.addEventListener('click', () => {
-	mainList.employers = {};
-	let str = '';
-	for (let i = 0; i < hireEmployersItem.length; i++) {
-		let a = hireEmployersItem[i].value;
-		if (checkInputString(a,50)) {
-			a = a.trim();
-			if (a != '') {					
-				a = a.charAt(0).toUpperCase() + a.slice(1).toLowerCase();
-				mainList.employers[i] = a;
-			}			
-		}
-	}
-	for (key in mainList.employers) {
-		str += mainList.employers[key] + ', ';
-	}
-	employersValue.textContent = str.slice(0, -2);	
-});*/
+
+
 
 
 
 function clearInput() {
-	for (let i = 0; i < goodsItem.length; i++) {
-			goodsItem[i].value = '';
-		}	
-	chooseItem.value = '';
+	itemsName = document.getElementsByClassName('items-name');
+	itemsPrice = document.getElementsByClassName('items-price');
+	employerName = document.getElementsByClassName('items-list');
+	btnGoods = document.getElementsByClassName('btn-goods');
+
+	budgetValue.value = '';
+	nameValue.value = '';
 	timeValue.value = '';
-	countBudgetValue.value = '';
+	inputSaleValue.value = 0;
 	
-	for (let i = 0; i < hireEmployersItem.length; i++) {
-			hireEmployersItem[i].value = '';
+	for (let i = 0; i < itemsName.length; i++) {
+			itemsName[i].value = '';
 	}	
-	countBudgetValue.textContent = '';
-	goodsValue.textContent = '';
-	itemsValue.textContent = '';
-	employersValue.textContent = '';
-	isopenValue.style.backgroundColor = 'red';
+	for (let i = 0; i < itemsPrice.length; i++) {
+			itemsPrice[i].value = '';
+	}
+	for (let i = 0; i < employerName.length; i++) {
+			employerName[i].value = '';
+	}
+	for (let i = 0; i < btnGoods.length; i++) {
+			btnGoods[i].value = '';
+	}
+	
+	discountCheck.checked = false;
+
+
 }
 
 function setStyleInputDisabledTrue(element) {
@@ -594,6 +511,17 @@ for (let i = 0; i < btnGoods.length; i++){
 	})
 }
 
+budgetValue.addEventListener('input', () => {
+		budgetValue.value = checkD(budgetValue.value);
+});
+
+inputSaleValue.addEventListener('input', () => {
+		inputSaleValue.value = checkD(inputSaleValue.value);
+});
+
+nameValue.addEventListener('input', () => {
+		nameValue.value = checkRus(nameValue.value);
+});
 
 
 
