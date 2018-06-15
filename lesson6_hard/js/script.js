@@ -8,53 +8,12 @@ function checkInputString(str, len) {
 	}
 }
 
-// Фуннкция получения величины бюджета от пользователя
-function setFifnans() {
-	let a = null;
-	//Проверка правильности ввода величины бюджета 	
-	do {
-		if (a !== null){
-			alert('Неверная величина бюджета! Введите снова');
-		}
-		a = +prompt("Ваш бюджет на месяц", 1000);
-	}
-	while (!(typeof a === 'number') || (typeof a === null) || (isNaN(a)) || (a == ''));
-	return a;
-}
-
-// Фуннкция получения наименования магазина от пользователя
-function setNameShop() {
-	let a = null;
-	//Проверка правильности ввода названия магазина
-	do {
-		if (a !== null){
-			alert('Неверное название магазина! Введите снова');
-		}
-		a = prompt("Название Вашего магазина",'');
-	}
-	while (!checkInputString(a,50));
-	return a; 
-}
-
-// Функция получения стоимости товара
-function setPrice() {
-	let a = null;
-	//Проверка правильности ввода величины бюджета 	
-	do {
-		if (a !== null){
-			alert('Неверная величина стоимости товара! Введите снова');
-		}
-		a = +prompt("Чему равна стоимость товара?", 100);
-	}
-	while (!(typeof a === 'number') || (typeof a === null) || (isNaN(a)) || (a == ''));
-	return a;
-}
-
 function checkRus(str){
 	let a  = str.charAt(str.length-1);
 	if (a != a.match(/[а-яА-ЯёЁ]/g)) {
 		str = str.slice(0,-1);
 	}
+
 	return str; 
 };
 
@@ -327,15 +286,15 @@ discountCheck.addEventListener('click', () => {
 saveBtnMain.addEventListener('click', () => {
 	mainList.shop = nameValue.value.toUpperCase();
 	mainList.finans = budgetValue.value;
-	mainList.time.timeBegin = timeBegin.value;
-	mainList.time.timeEnd = timeEnd.value;
+	mainList.time.timeBegin = timeBegin.value.split(':');
+	mainList.time.timeEnd = timeEnd.value.split(':');
 	mainList.discount = discountCheck.checked;
 	mainList.sale = inputSaleValue.value;
 	setStyleInputDisabledTrue(budgetValue);
 	setStyleInputDisabledTrue(nameValue);
 	setStyleInputDisabledTrue(inputSaleValue);
 	discountCheck.disabled = true;
-	timeValue.textContent = 'c ' + mainList.time.timeBegin + ' по ' + mainList.time.timeEnd;
+	timeValue.textContent = 'c ' + mainList.time.timeBegin.join(':') + ' по ' + mainList.time.timeEnd.join(':');
 	timeValue.style.display = 'block';
 	timeEdit.style.display = 'none';
 	saveMain.style.display = 'none';
@@ -522,6 +481,34 @@ inputSaleValue.addEventListener('input', () => {
 nameValue.addEventListener('input', () => {
 		nameValue.value = checkRus(nameValue.value);
 });
+
+
+let timerId = setTimeout (isopenShop, 1000);
+function isopenShop() {
+	let day = new Date();
+	if ((day.getHours() > +mainList.time.timeBegin[0]) && (day.getHours() < +mainList.time.timeEnd[0])){
+		openSignboard.src = 'img/open.png';
+	} else if (day.getHours() == +mainList.time.timeBegin[0]){
+		if (day.getMinutes() >= +mainList.time.timeBegin[1]){
+			openSignboard.src = 'img/open.png';
+		} else {
+			openSignboard.src = 'img/close.png';
+		}		
+	} else if (day.getHours() == +mainList.time.timeEnd[0]){
+		if (day.getMinutes() < +mainList.time.timeEnd[1]){
+			openSignboard.src = 'img/open.png';
+		} else {
+			openSignboard.src = 'img/close.png';
+		}
+	} else {
+		openSignboard.src = 'img/close.png';		
+	}
+
+
+
+	timerId = setTimeout (isopenShop, 1000);
+		
+}
 
 
 
