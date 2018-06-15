@@ -438,12 +438,23 @@ function getGoods(){
 }
 
 editBtnGoods.addEventListener('click', () => {	
+	if (mainList.shop != null){
+	items = document.getElementsByClassName('items');
 	items[0].style.display = 'block';
+
+	itemsName = document.getElementsByClassName('items-name');
+	itemsPrice = document.getElementsByClassName('items-price');
+	
 	for (let i = 0; i < btnGoods.length; i++){
 		setStyleInputDisabledFalse(btnGoods[i]);		
 	}
-	for (let i = 0; i < deleteBtnGoods.length; i++){
-		deleteBtnGoods[i].style.display= 'inline-block';
+	for (let i = 0; i < itemsName.length; i++){
+		itemsName[i].style.display= 'inline-block';
+		setStyleInputDisabledFalse(itemsName[i]);
+	}
+	for (let i = 0; i < itemsPrice.length; i++){
+		itemsPrice[i].style.display= 'inline-block';
+		setStyleInputDisabledFalse(itemsPrice[i]);
 	}
 	addBtnGoods.style.display = 'block';
 	btnSaveDiv.style.display = 'block';
@@ -451,6 +462,9 @@ editBtnGoods.addEventListener('click', () => {
 	for (let i = 0; i < itemsValue.length; i++){
 		itemsValue[i].style.display= 'block';
 	}	
+} else {
+	alert('Магазин еще не создан! Откройте магазин')
+}
 });
 
 addBtnGoods.addEventListener('click', () => {
@@ -468,7 +482,7 @@ addBtnGoods.addEventListener('click', () => {
 
 	let divItemValue = document.createElement('div');	
 	divItemValue.classList.add('items-value');	
-	divItemValue.innerHTML = "Товары<br><div class='items-value-list'><input class='items-name' value='' placeholder='Наименование'>" +
+	divItemValue.innerHTML = "<div class='items-value-list'><input class='items-name' value='' placeholder='Наименование'>" +
 							"<input class='items-price' value='' placeholder='Цена'></div>" +
 							"<div class='items-value-list'><input class='items-name' value='' placeholder='Наименование'>" +
 							"<input class='items-price' value='' placeholder='Цена'>" +
@@ -485,18 +499,8 @@ saveBtnGoods.addEventListener('click', () => {
 	itemsName = document.getElementsByClassName('items-name');
 	itemsPrice = document.getElementsByClassName('items-price');
 	itemsList = document.getElementsByClassName('items-list');
-
-	for (let i = 0; i < itemsName.length; i++){
-		setStyleInputDisabledTrue(itemsName[i]);
-		setStyleInputDisabledTrue(itemsPrice[i]);		
-		let a = itemsName[i].value;
-		if (!checkInputString(a,50))
-		{
-			itemsName[i].style.display = 'none';
-			itemsPrice[i].style.display = 'none';			
-		}
-	}
-
+	btnGoods = document.getElementsByClassName('btn-goods');
+	console.log(btnGoods.length);
 	shopGoods = [];
 	mainList.shopItems = {};
 	for(let i = 0; i < btnGoods.length; i++) {
@@ -512,8 +516,8 @@ saveBtnGoods.addEventListener('click', () => {
 					setStyleInputDisabledTrue(itemsName[i*3 + j]);	
 					setStyleInputDisabledTrue(itemsPrice[i*3 + j]);				
 				} else {
-					itemsName[i].style.display = 'none';
-					itemsPrice[i].style.display = 'none';
+					itemsName[i*3 + j].style.display = 'none';
+					itemsPrice[i*3 + j].style.display = 'none';
 				}				 							
 			}			
 		} 
@@ -523,20 +527,26 @@ saveBtnGoods.addEventListener('click', () => {
 	for(let i = 0; i < btnGoods.length; i++) {
 		let a = btnGoods[i].value;
 		if (!checkInputString(a,50)) {
-itemsList[i].remove();
+			itemsList[i].remove();
 		}
-}
+	}
 	mainList.shopGoods = shopGoods;
-	saveBtnGoods.style.display = 'none';
+	btnSaveDiv.style.display = 'none';
 	addBtnGoods.style.display = 'none';
+
 });
 
 editBtnEmployers.addEventListener('click', () => {
+	if (mainList.shop != null){
 	for (let i = 0; i < employersName.length; i++){
 		employersName[i].style.display = 'inline-block';
 		setStyleInputDisabledFalse(employersName[i]);
 	}
 	saveBtnEmployers.style.display = 'block';
+} else {
+	alert('Магазин еще не создан! Откройте магазин')
+}
+
 });
 
 saveBtnEmployers.addEventListener('click', () => {
@@ -565,6 +575,25 @@ for (let i = 0; i < employersName.length; i++){
 		employersName[i].value = checkRus(employersName[i].value);
 	})
 }
+
+for (let i = 0; i < itemsName.length; i++){
+	itemsName[i].addEventListener('input', () => {
+		itemsName[i].value = checkRus(itemsName[i].value);
+	})
+}
+
+for (let i = 0; i < itemsPrice.length; i++){
+	itemsPrice[i].addEventListener('input', () => {
+		itemsPrice[i].value = checkD(itemsPrice[i].value);
+	})
+}
+
+for (let i = 0; i < btnGoods.length; i++){
+	btnGoods[i].addEventListener('input', () => {
+		btnGoods[i].value = checkRus(btnGoods[i].value);
+	})
+}
+
 
 
 
