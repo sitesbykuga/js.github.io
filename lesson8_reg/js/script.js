@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	// Функция добавления '0'	
 	function addZero(v) {
 		if (v.toString().length == 1) {
-			return `0 + ${v}`; // >>>>>>>> ES6 <<<<<<<<<<<
+			return `0${v}`; // >>>>>>>> ES6 <<<<<<<<<<<
 		}
 		return v;
 	};
