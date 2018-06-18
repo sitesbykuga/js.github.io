@@ -1,11 +1,12 @@
 window.addEventListener('DOMContentLoaded', () => {
 	
-	let deadline = '2018-06-15 21:30:00';
+// >>>>>>>> 8 урок <<<<<<<<<<<
+	let deadline = '2018-06-18 21:47:00';
 
 	// Функция добавления '0'	
 	function addZero(v) {
 		if (v.toString().length == 1) {
-			return '0' + v;
+			return `0 + ${v}`; // >>>>>>>> ES6 <<<<<<<<<<<
 		}
 		return v;
 	};
@@ -18,7 +19,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		
 		if (Date.parse(endtime) <=  Date.parse(new Date())) {
 			hours = minutes = seconds = '00';
-			total = 0;
+			t = 0;
 		} 
 		return {
 			'total': t,
@@ -28,33 +29,29 @@ window.addEventListener('DOMContentLoaded', () => {
 		};
 	}
 
+	function setClock(className, endtime){
+		let timer = document.querySelectorAll(`#${className} > span`); // >>>>>>>> ES6 <<<<<<<<<<<
+			function updateClock() {			
+				let t = getTimeRemaining(endtime);	
+				timer[0].innerHTML = t.hours;
+				timer[2].innerHTML = t.minutes;
+				timer[4].innerHTML = t.seconds;	
 
-	function setClock(id, endtime){
-		let timer = document.getElementById(id),
-			hours = document.querySelector('.hours'),
-			minutes = document.querySelector('.minutes'),
-			seconds = document.querySelector('.seconds'),
-			t = getTimeRemaining(endtime);
-			
-			function updateClock() {				
-				hours.innerHTML = t.hours;
-				minutes.innerHTML = t.minutes;
-				seconds.innerHTML = t.seconds;
-				t = getTimeRemaining(endtime);
-				timeInterval = setInterval(updateClock, 1000);
-			};			
-			
-			if (t.total != 0) {
-				let timeInterval = setInterval(updateClock, 1000);
-			}
-			updateClock();			
+				if (t.total == 0){
+					clearInterval(timeInterval);
+				}												
+			};
+		let timeInterval = setInterval(updateClock, 1000);			
 	};
-
 	setClock('timer', deadline);
 
-	let info = document.getElementsByClassName('info-header')[0],
+
+	let info = document.getElementsByClassName('info')[0],
 		tab = document.getElementsByClassName('info-header-tab'),
-		tabContent = document.getElementsByClassName('info-tabcontent');
+		tabContent = document.getElementsByClassName('info-tabcontent'),
+		more = document.querySelector('.more'),
+	 	overlay = document.querySelector('.overlay'),
+	 	popupClose = document.querySelector('.popup-close');
 
 	function hideTabContent(a) {
 		for (let i = a; i < tabContent.length; i++) {
@@ -73,8 +70,15 @@ window.addEventListener('DOMContentLoaded', () => {
 		}		
 	}
 
-	info.addEventListener('click', function(event) {
+	function showPopup(){
+		overlay.style.display = 'block';
+		document.body.style.overflow = 'hidden';
+	}
+
+	info.addEventListener('click', (event) => { // >>>>>>>> ES6 <<<<<<<<<<<
 		let target = event.target;
+
+		// Обработчик отображения таба
 		if (target.className == 'info-header-tab'){
 			for (let i = 0; i < tab.length; i++) {
 				if (target == tab[i]) {
@@ -83,5 +87,24 @@ window.addEventListener('DOMContentLoaded', () => {
 				}
 			}
 		}
+// >>>>>>>> 9 урок <<<<<<<<<<<
+		// Обработчик вызова модального окна из таба
+		if (target.className == 'description-btn'){
+			target.classList.add('more-splash');
+			setTimeout(showPopup, 200);
+		}
+	});
+
+	// Обработчик вызова модального окна
+	more.addEventListener('click', function() {
+		this.classList.add('more-splash'); // >>>>>>>> ES6 <<<<<<<<<<<
+		setTimeout(showPopup, 200);		
+	});
+
+	// Обработчик закрытия модального окна
+	popupClose.addEventListener('click', () => { // >>>>>>>> ES6 <<<<<<<<<<<
+		overlay.style.display = 'none';
+		more.classList.remove('more-splash');
+		document.body.style.overflow = '';	
 	});
 });
