@@ -77,7 +77,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 	info.addEventListener('click', (event) => { // >>>>>>>> ES6 <<<<<<<<<<<
 		let target = event.target;
-
 		// Обработчик отображения таба
 		if (target.className == 'info-header-tab'){
 			for (let i = 0; i < tab.length; i++) {
@@ -90,7 +89,7 @@ window.addEventListener('DOMContentLoaded', () => {
 // >>>>>>>> 9 урок <<<<<<<<<<<
 		// Обработчик вызова модального окна из таба
 		if (target.className == 'description-btn'){
-			target.classList.add('more-splash');
+			//target.classList.add('more-splash');
 			setTimeout(showPopup, 200);
 		}
 	});
@@ -105,6 +104,75 @@ window.addEventListener('DOMContentLoaded', () => {
 	popupClose.addEventListener('click', () => { // >>>>>>>> ES6 <<<<<<<<<<<
 		overlay.style.display = 'none';
 		more.classList.remove('more-splash');
-		document.body.style.overflow = '';	
+		document.body.style.overflow = '';
+		if (form.statusMessage) {
+			form.removeChild(statusMessage);
+		}
+		//document.getElementsByClassName('status')[0].textContent = '';
+	});
+
+// >>>>>>>> 10 урок <<<<<<<<<<<
+	
+	// Функция отправки формы
+	function sendForm(event, formName){
+		event.preventDefault();
+		let statusMessage = document.createElement('div');
+		statusMessage.classList.add('status');
+		if (formName.lastChild.tagName != 'DIV') {
+			formName.appendChild(statusMessage);
+		};
+
+		let lastChild = formName.lastChild,
+			message = new Object(),
+			input = formName.getElementsByTagName('input');	
+
+		message.loading = 'Загрузка...';
+		message.success = 'Спасибо! Мы с Вами свяжемся!';
+		message.failure = 'Упс! Что-то пошло не так...';
+		
+		// AJAX
+		let requestContact = new XMLHttpRequest();
+		requestContact.open('POST', 'server.php');
+		requestContact.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
+
+		let formData = new FormData(formName);
+
+		requestContact.send(formData);
+
+		requestContact.onreadystatechange = () => {
+			if (requestContact.readyState < 4){
+				statusMessage.innerHTML = message.loading;
+			} else if (requestContact.readyState === 4) {
+				if (requestContact.status == 200 && requestContact.status < 300){
+					statusMessage.innerHTML = message.success;
+				}
+				else {
+					statusMessage.innerHTML = message.failure;
+				}			
+			}
+		}
+
+		for (let i = 0; i < input.length; i++){
+			input[i].value = '';
+		}
+
+		setTimeout(() => {
+			if (formName.lastChild.tagName === 'DIV') {
+				formName.removeChild(formName.lastChild);
+			}
+		}, 3000);	
+	};
+
+	let form = document.getElementsByClassName('main-form')[0],
+		formContact = document.getElementById('form');	
+	
+	// Обработка отправки формы с модального окна
+	form.addEventListener('submit', function(event){
+		sendForm(event, form);		
+	});
+
+	// Обработка отправки формы с контактной формы
+	formContact.addEventListener('submit', (event) => {
+		sendForm(event, formContact);
 	});
 });
