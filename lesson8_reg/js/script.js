@@ -111,7 +111,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		//document.getElementsByClassName('status')[0].textContent = '';
 	});
 
-// >>>>>>>> 10 урок <<<<<<<<<<<
+// >>>>>>>> 11 урок <<<<<<<<<<<
 	
 	// Функция отправки формы
 	function sendForm(event, formName){
