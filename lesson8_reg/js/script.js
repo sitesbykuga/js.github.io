@@ -167,7 +167,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		formContact = document.getElementById('form');	
 	
 	// Обработка отправки формы с модального окна
-	form.addEventListener('submit', function(event){
+	form.addEventListener('submit', (event) => {
 		sendForm(event, form);		
 	});
 
@@ -175,4 +175,145 @@ window.addEventListener('DOMContentLoaded', () => {
 	formContact.addEventListener('submit', (event) => {
 		sendForm(event, formContact);
 	});
+
+// >>>>>>>> 12 урок <<<<<<<<<<<
+
+	// Слайдер
+	let prev = document.getElementsByClassName('prev')[0],
+		next = document.getElementsByClassName('next')[0],
+		sliderItems = document.getElementsByClassName('slider-item'),
+		dots = document.getElementsByClassName('dot'),
+		dotsWrap = document.getElementsByClassName('slider-dots')[0],
+		sliderIndex = 1;
+
+	showSlide(sliderIndex);
+
+	function showSlide(n){
+		if ( n > sliderItems.length) {
+			sliderIndex = 1;
+		}
+
+		if ( n < 1) {
+			sliderIndex = sliderItems.length;
+		}
+
+		for (let i = 0; i < sliderItems.length; i++){
+			sliderItems[i].style.display = 'none';
+		}
+
+		for (let i = 0; i < dots.length; i++){
+			dots[i].classList.remove('dot-active');
+		}
+
+		sliderItems[sliderIndex-1].style.display = 'block';
+		dots[sliderIndex-1].classList.add('dot-active');
+	};
+
+	function plusSlide(n){
+		showSlide(sliderIndex += n);
+	};
+
+	prev.addEventListener('click', () => {
+		plusSlide(-1);
+	});
+
+	next.addEventListener('click', () => {
+		plusSlide(1);
+	});
+
+	function currentSlide(n){
+		showSlide(sliderIndex = n);
+	};
+
+	dotsWrap.addEventListener('click', (event) => {
+		for (let i = 0; i < dots.length+1; i++){
+			if (event.target.classList.contains('dot') && event.target == dots[i-1]) {
+				currentSlide(i);
+			}
+		}
+	});
+
+	// Калькулятор
+
+	let inputPeople = document.getElementsByClassName('counter-block-input')[0]
+		, inputDay = document.getElementsByClassName('counter-block-input')[1]
+		, selectBase = document.getElementById('select')
+		, spanTotal = document.getElementById('total')
+		, countPeople = 0
+		, countDay = 0
+		, base = 1
+		, total = 0
+		;
+	const rate = 4999;
+
+	spanTotal.innerHTML = total;
+
+	inputPeople.addEventListener('change', function() {
+		countPeople = this.value;
+		countTotal();
+	});
+
+	inputDay.addEventListener('change', function() {
+		countDay = this.value;
+		countTotal();
+	});
+
+	// Запрет ввода букв и символов 'eE', '+', '-', '.', ',' 
+	inputPeople.onkeypress = function(event) {
+	    if (event.ctrlKey || event.altKey || event.metaKey) return;
+	    let chr = getChar(event);
+	    if (chr == null) return;
+      	if (chr < '0' || chr > '9') {
+        	return false;
+    	}
+    }
+
+    inputDay.onkeypress = function(event) {
+	    if (event.ctrlKey || event.altKey || event.metaKey) return;
+	    let chr = getChar(event);
+	    if (chr == null) return;
+      	if (chr < '0' || chr > '9') {
+        	return false;
+    	}
+    }
+
+    function getChar(event) {
+    	if (event.which == null) {
+        	if (event.keyCode < 32) return null;
+        	return String.fromCharCode(event.keyCode) // IE
+      	}
+      	if (event.which != 0 && event.charCode != 0) {
+        	if (event.which < 32) return null;
+        	return String.fromCharCode(event.which) // остальные
+      	}
+      	return null; // специальная клавиша    
+    }
+
+	selectBase.addEventListener('change', function() {
+		for (let i = 0; i < this.options.length; i ++) {
+			if (this.options[i].selected){	
+				base = this.options[i].value;
+				break;
+			}
+		}
+		countTotal();
+	});
+
+	function countTotal() {
+		if (inputPeople.value !='' && inputDay.value !='') {
+			total = Math.round(countPeople * countDay * rate * base);
+			let str = total.toString(),
+				s = '';
+			for (let i = 0; i < str.length; i++){
+				s += str.charAt(i);
+				if ((str.length - i - 1)%3 == 0){
+					s += ' ';	
+				}
+			}
+			spanTotal.innerHTML = s;
+		} else {
+			total = 0;
+			spanTotal.innerHTML = total;
+		}
+	}
 });
