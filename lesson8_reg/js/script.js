@@ -289,6 +289,25 @@ window.addEventListener('DOMContentLoaded', () => {
       	return null; // специальная клавиша    
     }
 
+    /* Реализация ввода только цифр, с той "особенностью", 
+    	про которую написала в комментах на платформе
+    	
+    function checkD(str){
+		let a  = str.charAt(str.length-1);
+		if (a != a.match(/\d/g)) {
+			str = str.slice(0,-1);
+		}
+		return str; 
+	};
+
+	inputPeople.addEventListener('input', function() {
+		this.value = checkD(this.value);
+	});
+	inputDay.addEventListener('input', function() {
+		this.value = checkD(this.value);
+	});
+	*/
+
 	selectBase.addEventListener('change', function() {
 		for (let i = 0; i < this.options.length; i ++) {
 			if (this.options[i].selected){	
