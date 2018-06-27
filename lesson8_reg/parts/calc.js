@@ -23,16 +23,16 @@ function calc() {
 	});
 
 	// Запрет ввода букв и символов 'eE', '+', '-', '.', ',' 
-	inputPeople.onkeypress = function(event) {
+	/*inputPeople.onkeypress = function(event) {
 	    if (event.ctrlKey || event.altKey || event.metaKey) return;
 	    let chr = getChar(event);
 	    if (chr == null) return;
       	if (chr < '0' || chr > '9') {
         	return false;
     	}
-    }
+    }*/
 
-    inputDay.onkeypress = function(event) {
+   /* inputDay.onkeypress = function(event) {
 	    if (event.ctrlKey || event.altKey || event.metaKey) return;
 	    let chr = getChar(event);
 	    if (chr == null) return;
@@ -51,18 +51,18 @@ function calc() {
         	return String.fromCharCode(event.which) // остальные
       	}
       	return null; // специальная клавиша    
-    }
+    }*/
 
     /* Реализация ввода только цифр, с той "особенностью", 
-    	про которую написала в комментах на платформе
+    	про которую написала в комментах на платформе*/
     	
-    function checkD(str){
-		let a  = str.charAt(str.length-1);
-		if (a != a.match(/\d/g)) {
-			str = str.slice(0,-1);
-		}
-		return str; 
-	};
+function checkD(str){
+  let a  = str.charAt(str.length-1);
+    if (a != a.match(/\d/g)) {
+      str = str.slice(0,-1);
+    }
+    return str; 
+  };
 
 	inputPeople.addEventListener('input', function() {
 		this.value = checkD(this.value);
@@ -70,7 +70,7 @@ function calc() {
 	inputDay.addEventListener('input', function() {
 		this.value = checkD(this.value);
 	});
-	*/
+	
 
 	selectBase.addEventListener('change', function() {
 		for (let i = 0; i < this.options.length; i ++) {

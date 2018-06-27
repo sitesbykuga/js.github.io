@@ -14,7 +14,7 @@ let title = document.getElementById('title');
 title.textContent = 'Мы продаем только подлинную технику Apple';
 
 let adv = document.querySelector('.adv');
-adv.remove();
+adv.style.backgroundImage = 'url(../img/apple_true.jpg)';
 
 let promp = document.getElementById('prompt');
-promp.textContent = prompt('Ваше отношение к технике Apple','');
+//promp.textContent = prompt('Ваше отношение к технике Apple','');
