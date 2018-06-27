@@ -1,0 +1,140 @@
+@c1: #1a1635;
+body{
+	margin: 0;
+}
+
+.bg-img{
+	position: fixed;
+	left: 0;
+	height: 0;
+	img{
+			width: 100%;
+			height: auto; 
+	}	
+}
+.tabs{
+	padding-top: 15px;
+	position: relative;
+	text-align: center;
+	margin: 25px;	
+	background-color: rgba(255,255,255,0.6);
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	height: auto;
+	li {
+		display: inline-block;
+		float: center;
+		background-color: @c1;
+		color: #fff;
+		text-align: center;
+		padding: 5px 10px;
+		border-radius: 8px;
+		cursor: pointer;
+		margin: 0px 35px;
+		border: 1px solid lighten(@c1, 50%);
+		box-shadow: 0 0 10px rgba(0,0,0,0.5);		
+	}
+	li.active-style{
+		background-color: lighten(@c1, 50%);
+		box-shadow: 0 0 10px rgba(255,255,255,0.5);
+	}
+}
+
+.tabs__content {
+  display: none; /* по умолчанию прячем все блоки */
+}
+.tabs__content.active {
+  display: block; /* по умолчанию показываем нужный блок */
+	justify-content: center;
+  
+}
+.slide{
+	position: relative;
+	img{
+		width: 200px;
+		height: 200px;
+		margin-left: auto;
+    	margin-right: auto;
+	}
+	p{
+		color: @c1;
+		font-size: 36px;
+	}
+}
+.slider{
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+
+}
+
+.container-2 {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+h1 {
+  position: relative;
+  font-family: cardo, serif;
+  font-size: 2.6em;
+  font-weight: 700;
+  color: #333333;
+  line-height: 1.2em;
+  letter-spacing: 0.03em;
+  margin-bottom: 1.66em;
+}
+
+h1:after {
+  content: '†';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: rotateZ(180deg);
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.4em;
+  color: #333333;
+}
+
+a {
+  display: inline-block;
+  position: relative;
+  color: #333333;
+  text-decoration: none;
+  padding: 0.2em 0.05em;
+  border-bottom: 2px solid #333333;
+}
+
+a:hover {
+  color: #efefef;
+}
+
+a:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #333333;
+  z-index: -1;
+  transition: all 0.1s cubic-bezier(0, 0.59, 1, 0.26);
+}
+
+a:hover:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #333333;
+  z-index: -1;
+}
+
