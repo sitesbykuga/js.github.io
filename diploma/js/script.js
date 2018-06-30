@@ -1,5 +1,8 @@
 window.addEventListener('DOMContentLoaded', () => {
-	var timer = require('../parts/timer.js')
+	var slider = require('../parts/slider.js')
+		, popups = require('../parts/popups.js')
 		;  
-	timer();	 	
+	
+	slider();		
+	popups();
 });
