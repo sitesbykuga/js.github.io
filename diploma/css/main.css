@@ -187,6 +187,7 @@ h4 {
 }
 
 .header .burger {
+  display: none;
   margin-right: -1rem;
   background-color: #c51abb;
   border: none;

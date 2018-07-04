@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		, hoverOnSize = require('../parts/hoverOnSize.js')
 		, feedback = require('../parts/feedback.js')
 		, accordion = require('../parts/accordion.js')
+		, burger = require('../parts/burger.js')
 		;  
 	 
 	slider();		
@@ -19,4 +20,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	hoverOnSize();
 	feedback();
 	accordion();
+	burger();
 });
