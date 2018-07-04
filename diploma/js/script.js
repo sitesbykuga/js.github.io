@@ -7,6 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		, filtr = require('../parts/filtr.js')
 		, hoverOnSize = require('../parts/hoverOnSize.js')
 		, feedback = require('../parts/feedback.js')
+		, accordion = require('../parts/accordion.js')
 		;  
 	 
 	slider();		
@@ -17,4 +18,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	filtr();
 	hoverOnSize();
 	feedback();
+	accordion();
 });
