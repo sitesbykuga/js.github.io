@@ -6,6 +6,7 @@ function popups() {
 	popup(document.getElementsByClassName('popup-consultation')[0], 'button-consultation');
 	popup(document.getElementsByClassName('popup-gift')[0], 'fixed-gift', 'none', 1);
 
+	
 
 };
 

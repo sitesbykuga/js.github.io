@@ -1,9 +1,12 @@
+var countGift = 0
+	, openModal = 0 
+	;
+
 function popup (element, btnClassName, displayState=null, count = -1) {
 	var viewElement = require('../parts/viewElement.js')
 		; 
 
 	let popupWin = element
-		, countGift = 0 
 		;
 
 	function showPopup(){
@@ -19,6 +22,7 @@ function popup (element, btnClassName, displayState=null, count = -1) {
 			if (count != -1) {
 				countGift++;
 			};
+			openModal++;
 		};		
 	};
 
@@ -35,10 +39,12 @@ function popup (element, btnClassName, displayState=null, count = -1) {
 		for (let i = 0; i < textarea.length; i++){
 			textarea[i].value = '';
 		};	
+		openModal--;
 	};
 
 	document.body.addEventListener('click', (event) => { 
 		if (event.target.classList.contains(btnClassName)){
+			popupWin = element;
 			showPopup();
 		};
 	});
@@ -55,6 +61,13 @@ function popup (element, btnClassName, displayState=null, count = -1) {
 			showPopup();
 		}
 	})
+
+	setTimeout(() => {
+		if (openModal==0) {
+			popupWin = document.getElementsByClassName('popup-consultation')[0];
+			showPopup();
+		}
+	}, 60000);
 };
 
 module.exports = popup;
