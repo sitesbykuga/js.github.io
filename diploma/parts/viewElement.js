@@ -15,10 +15,12 @@ function viewElement(el) {
       , isView
       ;
 
-  if (elPosition.bottom > windowPosition.top &&
+  if (/*elPosition.bottom > windowPosition.top &&
       elPosition.top < windowPosition.bottom &&
       elPosition.right > windowPosition.left &&
-      elPosition.left < windowPosition.right) {
+      elPosition.left < windowPosition.right*/
+      elPosition.top + (elPosition.bottom - elPosition.top)*0.7 <= windowPosition.bottom
+      ) {
     isView = true;
   } else {
     isView = false
