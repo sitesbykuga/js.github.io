@@ -4,16 +4,20 @@ function calc() {
 		, options = document.getElementById('options')
 		, checkOptions = options.getElementsByTagName('input')
 		, divPrice = document.getElementsByClassName('calc-price')[0]
+		, promocodeInput = document.getElementsByClassName('promocode')[0]
 		, sizeN = 0
 		, materialN = 0
 		, optionsChecked = [0, 0, 0]
+		, promocodeValue = false
 		, total = 0
 		;
 	const prise = {
 			size: [0, 2000, 3500, 4900, 7000]
 			, material: [0, 1, 1.5, 1.3]
 			, options: [0.2, 1, 200]
+			, promocode: 30
 		  }
+		  , promocode = 'IWANTPOPART'
 		  ;
 
 	function getNumberSelected(select) {
@@ -35,6 +39,15 @@ function calc() {
 	selectMaterial.addEventListener('change', function() {
 		materialN = getNumberSelected(this);
 		countTotal();
+	});
+
+	promocodeInput.addEventListener('input', function() {
+		if (this.value.trim() == promocode){
+			promocodeValue = true;
+		} else{
+			promocodeValue = false;			
+		}
+		countTotal();		
 	});
 
 	options.addEventListener('click', (event) => {
@@ -60,6 +73,10 @@ function calc() {
 				} else {
 					total += prise.options[i] * optionsChecked[i];
 				}
+			}
+			
+			if (promocodeValue) {
+				total *= (1 - prise.promocode/100);
 			}
 
 			total = Math.round(total);
