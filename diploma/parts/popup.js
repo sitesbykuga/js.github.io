@@ -4,6 +4,7 @@ function popup (element, btnClassName, status=null, parent=null) {
 
 	function showPopup(){
 		popupWin.style.display = 'block';
+		document.body.style.overflow = 'hidden';
 		if (status == 'none') {
 			let btn = document.getElementsByClassName(btnClassName);
 			for (let i = 0; i < btn.length; i++){
@@ -15,6 +16,7 @@ function popup (element, btnClassName, status=null, parent=null) {
 
 	function closePopup(){
 		popupWin.style.display = 'none';	
+		document.body.style.overflow = '';
 
 		let input = popupWin.getElementsByTagName('input')
 			, textarea = popupWin.getElementsByTagName('textarea')

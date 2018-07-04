@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		, calc = require('../parts/calc.js')
 		, filtr = require('../parts/filtr.js')
 		, hoverOnSize = require('../parts/hoverOnSize.js')
+		, feedback = require('../parts/feedback.js')
 		;  
 	 
 	slider();		
@@ -15,4 +16,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	calc();
 	filtr();
 	hoverOnSize();
+	feedback();
 });
