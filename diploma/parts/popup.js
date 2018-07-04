@@ -15,12 +15,7 @@ function popup (element, btnClassName, status=null, parent=null) {
 
 	function closePopup(){
 		popupWin.style.display = 'none';	
-		if (status) {
-			let btn = document.getElementsByClassName(btnClassName);
-			for (let i = 0; i < btn.length; i++){
-				btn[i].style.display = 'inline';
-			}
-		}
+
 		let input = popupWin.getElementsByTagName('input')
 			, textarea = popupWin.getElementsByTagName('textarea')
 			;
