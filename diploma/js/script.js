@@ -3,10 +3,12 @@ window.addEventListener('DOMContentLoaded', () => {
 		, popups = require('../parts/popups.js')
 		, forms = require('../parts/forms.js')
 		, stylesList = require('../parts/stylesList.js')
+		, calc = require('../parts/calc.js')
 		;  
 	 
 	slider();		
 	popups();
 	forms();
 	stylesList();
+	calc();
 });

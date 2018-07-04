@@ -630,7 +630,18 @@ h4 {
   border: none;
   display: block;
   font-size: 1.9rem;
-  padding: 2rem 0;
+  padding: 1rem 0;
+}
+
+.calc #options {
+  opacity: 0.6;
+  font-family: 'Circe Extra Bold', sans-serif;
+  margin-left: 4rem;
+  appearance: none;
+  border: none;
+  display: block;
+  font-size: 1.9rem;
+  padding: 1rem 0;
 }
 
 .calc .promocode {
@@ -641,7 +652,7 @@ h4 {
   border: none;
   display: block;
   font-size: 1.9rem;
-  padding: 2rem 0;
+  padding: 1rem 0;
 }
 
 .calc #size {
@@ -658,7 +669,7 @@ h4 {
 }
 
 .calc .button-order {
-  margin-top: 6rem;
+  margin-top: 3rem;
   padding-left: 8rem;
   padding-right: 8rem;
 }

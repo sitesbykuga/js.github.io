@@ -249,12 +249,26 @@
 							<option   title="Достаточно грубый и создает ощущение реальности, подходит для классических пейзажей, натюрмортов и портретов.">Льняной холст</option>
 							<option  title="Изящный, подходит для всех типов реалистичных портретов.">Холст из натурального хлопка</option>
 						</select>
-						<select id=options>
+						<!-- <select id=options>
 							<option >Дополнительные услуги</option>
 							<option >Покрытие арт-гелем</option>
 							<option >Экспресс-изготовление</option>
 							<option >Доставка готовых работ </option>
-						</select>
+						</select> -->
+						<div id=options>Дополнительные услуги
+							<div>
+								<input type="checkbox" id="check-1">
+								<label for="check-1">Покрытие арт-гелем</label>
+							</div>
+							<div>
+								<input type="checkbox" id="check-2">
+								<label for="check-2">Экспресс-изготовление</label>
+							</div>
+							<div>
+								<input type="checkbox" id="check-3">
+								<label for="check-3">Доставка готовых работ</label>
+							</div>
+						</div>
 						<input type="text" class="promocode" placeholder="Введите ваш промокод">
 						<div class=calc-price>Для расчета нужно выбрать размер картины и материал картины</div>
 						<button class="button button-order">Быстрый заказ</button>
