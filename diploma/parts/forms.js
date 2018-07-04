@@ -21,7 +21,10 @@ function forms() {
 			};
 			if (target.name == 'phone'){
 				target.value = inputValue.checkPhone();
-			};			
+			};	
+			if (target.name == 'message'){
+				target.value = inputValue.checkRusPlus();
+			};		
 		};
 		if (event.target.tagName == 'TEXTAREA'){
 			let inputValue = new CheckInput(target.value);			

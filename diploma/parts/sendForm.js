@@ -29,13 +29,13 @@ function sendForm(formElement) {
 
 	requestContact.onreadystatechange = () => {
 		if (requestContact.readyState < 4){
-			statusMessage.innerHTML = message.loading;
+			statusMessage.innerHTML = `<p class=p-heading>${message.loading}</p>`;
 		} else if (requestContact.readyState === 4) {
 			if (requestContact.status == 200 && requestContact.status < 300){
-				statusMessage.innerHTML = message.success;
+				statusMessage.innerHTML = `<p class=p-heading>${message.success}</p>`;
 			}
 			else {
-				statusMessage.innerHTML = message.failure;
+				statusMessage.innerHTML = `<p class=p-heading>${message.failure}</p>`;
 			}			
 		}
 	}
