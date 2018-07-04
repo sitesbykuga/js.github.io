@@ -4,6 +4,7 @@ function accordion(){
 		, heading = accordion.getElementsByClassName('accordion-heading')		
 		, block = accordion.getElementsByClassName('accordion-block')
 		, prevBlock = 0
+		, openBlock = 0
 		;
 
 	for (let i = 0; i < block.length; i++){
@@ -28,16 +29,16 @@ function accordion(){
 		block[prevBlock].classList.add('fade-out');
 		setTimeout(() => {
 		for (let i = 0; i < span.length; i++){
-			if (event.target == span[i]){
-				clearBlock();
-				if (prevBlock == i) {
+			if (event.target == span[i]){	
+				if (heading[i].classList.contains('ui-accordion-header-active')) {
+					clearBlock();
 					break;
 				}
+				clearBlock();				
 				block[i].classList.remove('fade-out');				
 				heading[i].classList.add('ui-accordion-header-active');
 				block[i].classList.add('fade');
 				block[i].style.display = 'block';
-				prevBlock = i;
 			}
 		}
 		}, 400 )
