@@ -25,7 +25,7 @@ function forms() {
 		};
 		if (event.target.tagName == 'TEXTAREA'){
 			let inputValue = new CheckInput(target.value);			
-			target.value = inputValue.checkRus();
+			target.value = inputValue.checkRusPlus();
 		}
 
 	});

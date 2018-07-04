@@ -14,6 +14,14 @@ class CheckInput{
 
 	checkRus(){
 		let a  = this.inputValue.charAt(this.inputValue.length-1);
+		if (a != a.match(/[а-яА-ЯёЁ\s]/g)) {
+			this.inputValue = this.inputValue.slice(0,-1);
+		}
+		return this.inputValue;
+	};
+
+	checkRusPlus(){
+		let a  = this.inputValue.charAt(this.inputValue.length-1);
 		if (a != a.match(/[^a-zA-Z]/g)) {
 			this.inputValue = this.inputValue.slice(0,-1);
 		}
