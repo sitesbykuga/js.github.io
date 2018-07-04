@@ -4,6 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		, forms = require('../parts/forms.js')
 		, stylesList = require('../parts/stylesList.js')
 		, calc = require('../parts/calc.js')
+		, filtr = require('../parts/filtr.js')
 		;  
 	 
 	slider();		
@@ -11,4 +12,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	forms();
 	stylesList();
 	calc();
+	filtr();
 });

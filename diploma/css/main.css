@@ -777,6 +777,7 @@ h4 {
 .portfolio-wrapper {
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
 .portfolio-block {
