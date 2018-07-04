@@ -30,6 +30,9 @@ function accordion(){
 		for (let i = 0; i < span.length; i++){
 			if (event.target == span[i]){
 				clearBlock();
+				if (prevBlock == i) {
+					break;
+				}
 				block[i].classList.remove('fade-out');				
 				heading[i].classList.add('ui-accordion-header-active');
 				block[i].classList.add('fade');
