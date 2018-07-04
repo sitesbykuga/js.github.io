@@ -1465,6 +1465,13 @@ h4 {
   padding: 3rem 6rem 4rem 6rem;
 }
 
+.status-form {
+  background-color: rbga(255, 255, 255, 0.7);
+  color: black;
+  text-align: center;
+  font-size: 36px;
+}
+
 @media (max-width: 1399px) {
   .paints {
     display: none;
