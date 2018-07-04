@@ -31,6 +31,35 @@
   font-style: normal;
 }
 
+.fade {
+  -webkit-animation-name: fade;
+  animation-name: fade;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 0.1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.1;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 * {
   box-sizing: border-box;
   outline: none;
