@@ -23,7 +23,7 @@ function calc() {
 	function getNumberSelected(select) {
 		let n = 0;
 		for (let i = 0; i < select.options.length; i ++) {
-			if (select.options[i].selected){	
+			if (select.options[i].selected){	 
 				n = i;
 			break;
 			}
@@ -52,7 +52,7 @@ function calc() {
 
 	options.addEventListener('click', (event) => {
 		if (event.target.tagName == 'INPUT'){
-			for (i = 0; i < checkOptions.length; i++){
+			for (let i = 0; i < checkOptions.length; i++){
 				if (checkOptions[i].checked){
 					optionsChecked[i] = 1;
 				} else {

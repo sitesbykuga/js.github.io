@@ -13,12 +13,6 @@ function sendForm(formElement) {
 		, formData = new FormData(formElement)
 		;
 	
-	
-	console.log(`Отправляемые данные (для проверки) - ${(new Date).toLocaleTimeString()}`); 
-	for (var key of formData.values()) {
-		console.log(key); 
-	}
-
 	// AJAX
 	requestContact.open('POST', 'server.php');
 	requestContact.setRequestHeader("Content-Type", 'application/x-www-form-urlencoded');
