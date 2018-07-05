@@ -1,5 +1,6 @@
 var countGift = 0
-	, openModal = 0 
+	, openModal = 0
+	, countOpenModal = 0 
 	;
 
 function popup (element, btnClassName, displayState=null, count = -1) {
@@ -23,6 +24,7 @@ function popup (element, btnClassName, displayState=null, count = -1) {
 				countGift++;
 			};
 			openModal++;
+			countOpenModal++;
 		};		
 	};
 
@@ -57,7 +59,7 @@ function popup (element, btnClassName, displayState=null, count = -1) {
 
 	window.addEventListener('scroll', () => {
 		let footer = document.getElementById('footer');
-		if (displayState == 'none' && viewElement(footer) && (element == document.getElementsByClassName('popup-gift')[0])) {
+		if (countOpenModal == 0 && viewElement(footer) && (element == document.getElementsByClassName('popup-gift')[0])) {
 			showPopup();
 		}
 	})
