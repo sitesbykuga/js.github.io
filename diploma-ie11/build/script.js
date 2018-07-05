@@ -43,7 +43,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         accordion();
         burger();
       });
-    }).call(this, require("e/U+97"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_791537be.js", "/");
+    }).call(this, require("e/U+97"), typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {}, require("buffer").Buffer, arguments[3], arguments[4], arguments[5], arguments[6], "/fake_d67c3e9a.js", "/");
   }, { "../parts/accordion.js": 2, "../parts/burger.js": 3, "../parts/calc.js": 4, "../parts/feedback.js": 6, "../parts/filtr.js": 7, "../parts/forms.js": 8, "../parts/hoverOnSize.js": 9, "../parts/popups.js": 11, "../parts/slider.js": 13, "../parts/stylesList.js": 14, "buffer": 17, "e/U+97": 19 }], 2: [function (require, module, exports) {
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
       function accordion() {
@@ -97,22 +97,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     (function (process, global, Buffer, __argument0, __argument1, __argument2, __argument3, __filename, __dirname) {
       function burger() {
         var btnBurger = document.getElementsByClassName('burger')[0],
-            menuBurger = document.getElementsByClassName('burger-menu')[0],
+            menuBurger = document.getElementById('burger-menu-main'),
             menuHeader = document.getElementsByClassName('header-menu')[0],
-            imgBurger = document.querySelectorAll('.burger > imag')[0],
+            imgBurger = document.querySelectorAll('.burger > img')[0],
             spanBurger = document.querySelectorAll('.burger > span')[0];
         window.addEventListener('resize', function () {
-          console.log(this.innerWidth);
           if (this.innerWidth < 769) {
             menuHeader.style.display = 'none';
-            btnBurger.style.display = 'block';
           } else {
             menuHeader.style.display = 'block';
-            btnBurger.style.display = 'none';
           }
         });
+        btnBurger.style.display = 'block';
+        menuHeader.style.display = 'block';
+        menuBurger.style.display = 'none';
 
         function showMenuBurger(event) {
+          console.log(event.target);
+          console.log(btnBurger);
+          console.log(imgBurger);
+          console.log(spanBurger);
           if (event.target == btnBurger || event.target == imgBurger || event.target == spanBurger) {
             if (menuBurger.style.display == 'none') {
               menuBurger.style.display = 'block';

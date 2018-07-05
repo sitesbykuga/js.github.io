@@ -2,22 +2,26 @@
 
 function burger() {
 	var btnBurger = document.getElementsByClassName('burger')[0],
-	    menuBurger = document.getElementsByClassName('burger-menu')[0],
+	    menuBurger = document.getElementById('burger-menu-main'),
 	    menuHeader = document.getElementsByClassName('header-menu')[0],
-	    imgBurger = document.querySelectorAll('.burger > imag')[0],
+	    imgBurger = document.querySelectorAll('.burger > img')[0],
 	    spanBurger = document.querySelectorAll('.burger > span')[0];
 	window.addEventListener('resize', function () {
-		console.log(this.innerWidth);
 		if (this.innerWidth < 769) {
 			menuHeader.style.display = 'none';
-			btnBurger.style.display = 'block';
 		} else {
 			menuHeader.style.display = 'block';
-			btnBurger.style.display = 'none';
 		}
 	});
+	btnBurger.style.display = 'block';
+	menuHeader.style.display = 'block';
+	menuBurger.style.display = 'none';
 
 	function showMenuBurger(event) {
+		console.log(event.target);
+		console.log(btnBurger);
+		console.log(imgBurger);
+		console.log(spanBurger);
 		if (event.target == btnBurger || event.target == imgBurger || event.target == spanBurger) {
 			if (menuBurger.style.display == 'none') {
 				menuBurger.style.display = 'block';
