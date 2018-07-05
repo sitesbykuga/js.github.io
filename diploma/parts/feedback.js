@@ -3,7 +3,8 @@ function feedback () {
 	let prev = document.getElementsByClassName('main-prev-btn')[0]
 		, next = document.getElementsByClassName('main-next-btn')[0]
 		, sliderItems = document.getElementsByClassName('feedback-slider-item')
-		, sliderIndex = 1		
+		, sliderIndex = 1	
+		, nowSlide = sliderIndex	
 		;
 
 	for (let i = 0; i < sliderItems.length; i++){
@@ -13,31 +14,41 @@ function feedback () {
 			}
 		}
 	
-	let timeOutf = setTimeout(() => {sliderItems[0].classList.add('slideOutLeft');}, 4500);
 
-	function showSlide(n){
+	function showSlide(n, direction){
+
 		if ( n > sliderItems.length) {
 			sliderIndex = 1;
 		}
 
 		if ( n < 1) {
 			sliderIndex = sliderItems.length;
-		}		
-		let timeOutf = setTimeout(() => {sliderItems[sliderIndex-1].classList.add('slideOutLeft');}, 4500);
-		for (let i = 0; i < sliderItems.length; i++){
-			sliderItems[i].classList.remove('slideInRight');	
-			sliderItems[i].classList.remove('slideOutLeft');	
-			sliderItems[i].style.display = 'none';
+		}
+		let classAnimate = ['slideInLeft', 'slideInRight']
+			, classDirection = 'slideInLeft'
+			;
+
+		if (direction == 'left'){
+			classDirection = 'slideInRight';
 		}
 
-		sliderItems[sliderIndex-1].classList.add('slideInRight');
+		for (let i = 0; i < sliderItems.length; i++){
+			sliderItems[i].classList.remove(classAnimate[0]);	
+			sliderItems[i].classList.remove(classAnimate[1]);	
+			sliderItems[i].style.display = 'none';
+		}
+		sliderItems[sliderIndex-1].classList.add(classDirection);
 		sliderItems[sliderIndex-1].style.display = 'block';
-
-
 	};
 
 	function plusSlide(n){
-		showSlide(sliderIndex += n);
+		clearInterval(timerIDf);		
+		let direction = 'left';
+		if (n < 0) {
+			direction = 'right'
+		}
+		showSlide(sliderIndex += n, direction);
+		timerIDf = setInterval(() => {showSlide(sliderIndex += 1, 'left');}, 5000);	
 	};
 
 	prev.addEventListener('click', () => {
@@ -46,11 +57,8 @@ function feedback () {
 
 	next.addEventListener('click', () => {
 		plusSlide(1);
-	});
 
-	function currentSlide(n){
-		showSlide(sliderIndex = n);
-	};
+	});
 
 	let timerIDf = setInterval(() => {plusSlide(1);}, 5000);
 
